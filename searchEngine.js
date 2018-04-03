@@ -34,6 +34,14 @@ function SearchRepositories(searchItem, page) {
     body.appendChild(dataShowCase);
 }
 
+function clearBody() {
+    if(body.children[4] != undefined) {
+        var Rnode = body.children[body.childElementCount-2]
+        body.removeChild(Rnode);
+    }
+    console.log(body);
+}
+
 
 // fetch("example/data.txt").then(response => {
 //   console.log(response.status);
@@ -50,10 +58,36 @@ function SearchRepositories(searchItem, page) {
 // console.log(document.activeElement.tagName);
 
 let form = document.querySelector("form");
-
 form.addEventListener("submit", event => {
     var inputText = form.elements.value.value;
-    console.log("Saving value", inputText);
+    // console.log("Saving value", inputText);
     SearchRepositories(inputText);
+    clearBody();
     event.preventDefault();
 });
+
+
+var xhr = new XMLHttpRequest();
+
+xhr.open("GET", "https://api.github.com", false);
+xhr.send("aslanokan");
+console.log(xhr.status);
+
+
+// let textarea = document.querySelector("textarea");
+// textarea.addEventListener("keydown", event => {
+//   // The key code for F2 happens to be 113
+//   if (event.keyCode == 113) {
+//     replaceSelection(textarea, "Khasekhemwy");
+//     event.preventDefault();
+//   }
+// });
+//
+// function replaceSelection(field, word) {
+//     let from = field.selectionStart, to = field.selectionEnd;
+//     field.value = field.value.slice(0, from) + word +
+//                   field.value.slice(to);
+//     // Put the cursor after the word
+//     field.selectionStart = from + word.length;
+//     field.selectionEnd = from + word.length;
+//   }
